@@ -1,0 +1,7 @@
+[package]
+name = "firmware"
+version = "0.0.0" # Versioning is done automatically. This is just a placeholder.
+edition = "2024"
+
+[profile.release]
+panic = "abort"
