@@ -12,13 +12,13 @@ RUN rustup install nightly-2025-05-02 && \
     rustup default nightly-2025-05-02 && \
     rustup component add cargo rust-src rust-std
 
-RUN cargo +stable install ravedude
-
 ARG USER
 ARG UID
 RUN useradd -m -s /bin/bash -u ${UID:-2222} $USER && \
     usermod -aG dialout $USER
 USER ${USER}
+
+RUN cargo +stable install ravedude
 
 WORKDIR /home/$USER/dependencies_fetch_project/dummy
 RUN cargo init
