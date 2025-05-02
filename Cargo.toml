@@ -13,6 +13,11 @@ panic-halt = "=0.2.0"
 ufmt = "=0.2.0"
 nb = "=1.1.0"
 embedded-hal = "=1.0.0"
+embassy-executor = { version = "=0.7.0", features = ["arch-avr", "executor-thread"] }
+avr-device = { version = "=0.5.4", features = ["atmega32u4", "rt"] } # version depends on embassy-executor
+embassy-futures = { version ="=0.1.1" }
+# embassy-time = { version = "=0.4.0", features = ["generic_queue-8", "tick-hw-10_000"] }
+# critical-section = { version = "=1.2.0" }
 
 [dependencies.arduino-hal]
 git = "https://github.com/rahix/avr-hal"

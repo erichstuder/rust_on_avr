@@ -2,11 +2,21 @@
 #![no_main]
 
 use panic_halt as _;
+use embassy_executor::{Spawner, main, task};
+// use avr_device::entry;
 
-#[arduino_hal::entry]
-fn main() -> ! {
-    let dp = arduino_hal::Peripherals::take().unwrap();
-    let pins = arduino_hal::pins!(dp);
+// #[entry]
+// fn main() -> ! {
+//     // This is the entry point for the program. It is called by the bootloader.
+//     // The `embassy_executor` crate provides a way to run async code on embedded devices.
+//     // The `main` function is marked with `#[entry]` to indicate that it is the entry point.
+//     embassy_executor::Executor::run(main);
+// }
+
+#[main]
+async fn main(spawner: Spawner) {
+    // let dp = arduino_hal::Peripherals::take().unwrap();
+    // let pins = arduino_hal::pins!(dp);
 
     /*
      * For examples (and inspiration), head to
@@ -18,10 +28,14 @@ fn main() -> ! {
      * examples available.
      */
 
-    let mut led = pins.d13.into_output();
+    // let mut led = pins.d13.into_output();
 
     loop {
-        led.toggle();
-        arduino_hal::delay_ms(1000);
+        // led.toggle();
+        // arduino_hal::delay_ms(100);
+
     }
 }
+
+// [task]
+// async  
