@@ -1,11 +1,31 @@
 FROM rust:1.86.0
 
 RUN apt-get update && apt-get install -y \
-    gcc-avr
+    avr-libc \
+    gcc-avr \
+    pkg-config \
+    avrdude \
+    libudev-dev \
+    build-essential
 
-# RUN rustup install nightly-2025-05-01 && \
-#     rustup target add avr-none --toolchain nightly-2025-05-01 && \
-#     rustup default nightly-2025-05-01
+RUN rustup install nightly-2025-05-02 && \
+    rustup default nightly-2025-05-02 && \
+    rustup component add cargo rust-src rust-std
 
-RUN rustup install nightly && \
-    rustup default nightly
+RUN cargo +stable install ravedude
+
+ARG USER
+ARG UID
+RUN useradd -m -s /bin/bash -u ${UID:-2222} $USER && \
+    usermod -aG dialout $USER
+USER ${USER}
+
+WORKDIR /home/$USER/dependencies_fetch_project/dummy
+RUN cargo init
+COPY ./Cargo.toml .
+RUN cargo fetch
+# - For example when used as devcontainer, the UID is set to a default value (see above).
+#   I wasn't able to pass the UID of the local user to the container in this case.
+#   So when using the devcontainer, the local user is then used and can't access the fetched dependencies.
+#   To solve this, the fetched dependencies are made readable and writable by anyone.
+RUN chmod -R a+rw /usr/local/cargo/registry
