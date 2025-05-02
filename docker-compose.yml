@@ -9,7 +9,7 @@ services:
     volumes:
       - .:/home/${USER}/project
       - /media/${USER}:/media/${USER}
-      - /dev/bus/usb:/dev/bus/usb
+      - /dev:/dev
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     working_dir: /home/${USER}/project
