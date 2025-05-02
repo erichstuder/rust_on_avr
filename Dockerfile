@@ -21,6 +21,7 @@ RUN cargo +stable install ravedude
 WORKDIR /home/$USER/dependencies_fetch_project/dummy
 RUN cargo init
 COPY ./Cargo.toml .
+COPY ./rust-toolchain.toml .
 RUN cargo fetch
 # - For example when used as devcontainer, the UID is set to a default value (see above).
 #   I wasn't able to pass the UID of the local user to the container in this case.
