@@ -3,10 +3,8 @@ FROM rust:1.86.0
 RUN apt-get update && apt-get install -y \
     avr-libc \
     gcc-avr \
-    pkg-config \
     avrdude \
-    libudev-dev \
-    build-essential
+    libudev-dev
 
 RUN rustup install nightly-2025-05-02 && \
     rustup default nightly-2025-05-02 && \
