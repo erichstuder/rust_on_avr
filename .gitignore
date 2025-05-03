@@ -1,4 +1,1 @@
-# ignore for now. Cargo.lock will be added later with a check in the CI for changes
-Cargo.lock
-
 /target
