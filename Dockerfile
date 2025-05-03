@@ -4,7 +4,8 @@ RUN apt-get update && apt-get install -y \
     avr-libc \
     gcc-avr \
     avrdude \
-    libudev-dev
+    libudev-dev \
+    tig
 
 RUN rustup install nightly-2025-05-02 && \
     rustup default nightly-2025-05-02 && \
