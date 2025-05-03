@@ -1,11 +1,15 @@
 FROM rust:1.86.0
 
 RUN apt-get update && apt-get install -y \
+    # tools for the build process
     avr-libc \
     gcc-avr \
     avrdude \
     libudev-dev \
-    tig
+    # tig is great for viewing git history
+    tig \
+    # less is needed e.g. for 'git diff' to make the output scrollable
+    less
 
 RUN rustup install nightly-2025-05-02 && \
     rustup default nightly-2025-05-02 && \
